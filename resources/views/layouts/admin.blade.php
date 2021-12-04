@@ -9,7 +9,8 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Store Dashboard Page</title>
+    <title>@yield('title')</title>
+
     @stack('prepend-style')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="/style/main.css" rel="stylesheet" />
@@ -23,41 +24,38 @@
         <!-- Sidebar -->
         <div class="border-right" id="sidebar-wrapper">
           <div class="sidebar-heading text-center">
-            <img src="/images/admin.png" alt="" class="my-4" style="max-width: 150px" />
+            <img src="/images/admin.png" alt="" class="my-4" style="max-width: 150px;" />
           </div>
           <div class="list-group list-group-flush">
             <a
               href="{{ route('admin-dashboard') }}"
               class="list-group-item list-group-item-action"
-              >Dashboard</a>
-
+              >Dashboard</a
+            >
             <a
-              href="#"
-              class="list-group-item list-group-item-action"
+              href="{{ route('product.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/product')) ? 'active' : '' }}"
               >Products</a>
-
-        
-            <a
+              <a
+              href="{{ route('product-gallery.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/product-gallery*')) ? 'active' : '' }}"
+              >Galleries</a>
+              <a
               href="{{ route('category.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/category*')) ? 'active' : '' }}"
               >Categories</a>
-
-              <a
+            <a
               href="#"
               class="list-group-item list-group-item-action"
               >Transactions</a>
-
               <a
-              href="#"
-              class="list-group-item list-group-item-action"
+              href="{{ route('user.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/user*')) ? 'active' : '' }}"
               >Users</a>
-
-              <a
-              href="/index.html"
+            <a
+              href="/dashboard-account.html"
               class="list-group-item list-group-item-action"
               >Sign Out</a>
-
-           
           </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -107,38 +105,33 @@
                     Hi, Angga
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    
                     <a class="dropdown-item" href="/">Logout</a>
                   </div>
                 </li>
-                
               </ul>
               <!-- Mobile Menu -->
               <ul class="navbar-nav d-block d-lg-none mt-3">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    Hi, Angga
-                  </a>
+                  <a class="nav-link" href="#"> Hi, Angga </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link d-inline-block" href="#">
-                    Cart
-                  </a>
+                  <a class="nav-link d-inline-block" href="#"> Cart </a>
                 </li>
               </ul>
             </div>
           </nav>
 
+          {{-- content --}}
           @yield('content')
+
         </div>
-        <!-- /#page-content-wrapper -->
       </div>
     </div>
     <!-- Bootstrap core JavaScript -->
     @stack('prepend-script')
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.3/datatables.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init();
