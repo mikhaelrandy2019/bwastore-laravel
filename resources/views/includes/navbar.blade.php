@@ -77,6 +77,7 @@
                         @php
                             $carts = \App\Cart::where('users_id', Auth::user()->id)->count();
                         @endphp
+                        
                         @if($carts > 0)
                             <img src="/images/icon-cart-filled.svg" alt="" />
                             <div class="card-badge">{{ $carts }}</div>
